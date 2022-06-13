@@ -447,7 +447,8 @@ getCert() {
 		curl -sL https://get.acme.sh | sh -s email=$autoEmail@gmail.com
 		source ~/.bashrc
 		~/.acme.sh/acme.sh --upgrade --auto-upgrade
-		~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
+		~/.acme.sh/acme.sh --set-default-ca --server zerossl
+		~/.acme.sh/acme.sh --register-account -m literature1204@gmail.com --server zerossl
 		if [[ $BT == "false" ]]; then
 			if [[ -n $(curl -sm8 ip.sb | grep ":") ]]; then
 				~/.acme.sh/acme.sh --issue -d $DOMAIN --keylength ec-256 --pre-hook "systemctl stop nginx" --post-hook "systemctl restart nginx" --standalone --listen-v6
